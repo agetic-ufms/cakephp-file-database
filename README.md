@@ -32,7 +32,7 @@ Usando migrations para gerar a tabela de arquivos
 ```
 $ bin/cake migrations migrate -p FileDb
 ```
-Esse comando deve gerar a seguinte tabela:
+Esse comando deve gerar a seguinte tabela. Prefira usar migrations.
 
 ```sql
 CREATE TABLE attachments
@@ -65,7 +65,7 @@ Crie quantas configurações de arquivo desejar:
             [
                 'alias' => 'Foto',
                 'type' => 'hasOne',
-                'form_field' => 'file_foto' // campo usado no formulário
+                'form_field' => 'file_foto' 		// campo usado no formulário
             ],
             [
 	            'alias' => 'Documento',
@@ -74,7 +74,7 @@ Crie quantas configurações de arquivo desejar:
             ],
              [
 	            'alias' => 'Album',
-	            'type' => 'hasMany',
+	            'type' => 'hasMany',				// hasMany 
 	            'form_field' => 'file_album'  
             ],
     ]);
@@ -83,7 +83,7 @@ Crie quantas configurações de arquivo desejar:
 ### Adicione o campo no formulário:
 
 ```php
-   <?= $this->Form->create($autor, ['enctype' => 'multipart/form-data']) ?>
+   <?= $this->Form->create($aluno, ['enctype' => 'multipart/form-data']) ?>
    
 	   <?= $this->Form->file('file_foto'); ?>
 	   <?= $this->Form->file('file_documento'); ?>
@@ -133,18 +133,16 @@ Em seu controller:
 
 ### Removendo o arquivo:
 
-A remoção é automática quando a entidade associada é removida. Ou se
+A remoção é automática quando a entidade associada é removida. Ou seja, se o aluno for removido, os arquivos também serão.
 
 Caso queira remover um arquivo específico ou vários, use o seguinte:
 
 ```php
-	
 	// file_id: id do arquivo!
 	$this->Alunos->deleteFile($file_id);
 	
 	// id: do aluno, e tag = 'Foto' 
 	$this->Alunos->deleteAllFiles($id, $tag=null)
-	
 ```
 
 ## TODO (a fazer)
