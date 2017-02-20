@@ -30,7 +30,7 @@ Plugin::load('FileDb');
 ### Criar a tabela
 Usando migrations:
 ```
-$ bin/cake migrations migrate  
+$ bin/cake migrations migrate -p FileDb
 ```
 
 
