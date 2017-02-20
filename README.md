@@ -28,9 +28,29 @@ Plugin::load('FileDb');
 ```
 
 ### Criar a tabela
-Usando migrations:
+Usando migrations para gerar a tabela de arquivos
 ```
 $ bin/cake migrations migrate -p FileDb
+```
+Esse comando deve gerar a seguinte tabela:
+
+```sql
+CREATE TABLE attachments
+(
+  id serial NOT NULL,
+  file_name character varying(255) NOT NULL,
+  file_path character varying(255),
+  file_type character varying(255) NOT NULL,
+  file_size bigint NOT NULL,
+  file_content bytea NOT NULL,
+  model character varying(255) NOT NULL,
+  tag character varying(255) NOT NULL,
+  foreign_key integer NOT NULL,
+  created timestamp without time zone NOT NULL,
+  modified timestamp without time zone,
+  CONSTRAINT attachments_pkey PRIMARY KEY (id)
+);
+
 ```
 
 
