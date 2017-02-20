@@ -146,3 +146,10 @@ Caso queira remover um arquivo específico ou vários, use o seguinte:
 	$this->Alunos->deleteAllFiles($id, $tag=null)
 	
 ```
+
+## TODO (a fazer)
+
+* Criar Validator para os arquivos
+* Limitar o tipo de arquivo
+* Limitar tamanho 
+* Opção de gravar em disco
