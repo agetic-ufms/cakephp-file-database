@@ -25,7 +25,7 @@ class FileDatabaseBehavior extends Behavior {
 					'alias' => 'Attachments',
 					'type' => 'hasOne',
 					'form_field' => 'file_upload' 
-			],
+			]
 	];
 	
 	/*
