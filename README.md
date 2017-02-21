@@ -114,6 +114,9 @@ Em seu controller:
 ```php
 	public function download($id = null)
     {
+    		
+    	  // Considere usar um cache antes de fazer a consulta abaixo!
+    		
         $aluno = $this->Alunos->get($id, [
             'contain' => ['Foto']
         ]);
