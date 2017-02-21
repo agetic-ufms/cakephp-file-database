@@ -145,9 +145,41 @@ Caso queira remover um arquivo específico ou vários, use o seguinte:
 	$this->Alunos->deleteAllFiles($id, $tag=null)
 ```
 
+## Validação
+```php
+		// use bytes(inteiro) ou '1MB' humanizado
+        $validator->add('file_upload', 'file', [
+        		'rule' => ['fileSize', [ '>', 1024 ]],
+        		'message' =>'Arquivo deve ser maior que 1MB'
+        ]);
+        
+        // limite o tamanho considerandosua regra E: memory_limit, post_max_size e upload_max_filesize
+        $validator->add('file_upload', 'file', [
+        		'rule' => ['fileSize', [ '<', '2MB' ]],
+        		'message' =>'Arquivo deve ser menor que 2MB'
+        ]);
+
+		$validator->add('file_upload','create', [
+               		'rule' => ['extension', ['png', 'pdf']],
+               		'message' =>'Extensão inválida'
+        ]);
+		
+		$validator->add('file_upload','create', [
+				'rule' => ['mimeType', ['image/jpeg', 'image/png']],
+				'message' =>'Tipo inválido',
+		]);
+
+		// Erro quando arquivo não pode ser enviado ao servidor, geralmente por causa de:
+		//         memory_limit
+		//         post_max_size
+		//         upload_max_filesize
+		$validator->add('file_upload', 'file', [
+				'rule' => ['uploadError'],
+				'message' =>'Erro ao enviar o arquivo',
+				'last'=> true
+		]);
+```
+
 ## TODO (a fazer)
 
-* Criar Validator para os arquivos
-* Limitar o tipo de arquivo
-* Limitar tamanho 
 * Opção de gravar em disco
