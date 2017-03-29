@@ -9,6 +9,7 @@ use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
 use Cake\Filesystem\File;
 use Cake\Filesystem\Folder;
+use Cake\Datasource\ConnectionManager;
 
 class FileDatabaseBehavior extends Behavior {
 	
@@ -37,11 +38,16 @@ class FileDatabaseBehavior extends Behavior {
 		if(!empty($config))
 			$this->config = $config;
 		
+
+		$str_con = $this->_table->defaultConnectionName();
+        $conn = ConnectionManager::get($str_con);
+
 		// auto table
-		$this->Attachments = TableRegistry::get ( 'Attachments', [ 
+		$this->Attachments = TableRegistry::get ( 'Attachments', [
 				'table' => 'attachments',
-                'connection' => $this->_table->defaultConnectionName()
+                'connection' => $conn
 		] );
+        
 		$this->Attachments->addBehavior ( 'Timestamp' );
 		
 		$assoc = [ ];
