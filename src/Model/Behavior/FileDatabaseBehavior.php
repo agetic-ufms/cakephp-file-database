@@ -39,7 +39,8 @@ class FileDatabaseBehavior extends Behavior {
 		
 		// auto table
 		$this->Attachments = TableRegistry::get ( 'Attachments', [ 
-				'table' => 'attachments' 
+				'table' => 'attachments',
+                'connection' => $this->_table->defaultConnectionName()
 		] );
 		$this->Attachments->addBehavior ( 'Timestamp' );
 		
