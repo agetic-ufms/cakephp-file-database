@@ -122,7 +122,7 @@ class FileDatabaseBehavior extends Behavior {
                         if(!is_uploaded_file ($files['tmp_name']))
                             continue;
 
-                        if(isset($originalEntity[$conf['form_field']])) {
+                        if(isset($originalEntity[$conf['form_field']]) && isset($originalEntity[$conf['form_field']]['id'])) {
 
                             $file_id = $originalEntity[$conf['form_field']]['id'];
                             $entities[] = $this->createEntityFile($files, $entity->id, $key, $file_id);
@@ -131,7 +131,7 @@ class FileDatabaseBehavior extends Behavior {
 
                             $entities[] = $this->createEntityFile($files, $entity->id, $key);
 
-                            }
+                        }
 
                         break;
                     }
@@ -190,7 +190,7 @@ class FileDatabaseBehavior extends Behavior {
         return $entity;
     }
 
-    private function createEntityFile($file_up, $fk, $tag, $file_id){
+    private function createEntityFile($file_up, $fk, $tag, $file_id = null){
         if($file_id) {
             $file = $this->Attachments->get($file_id);
         } else {
